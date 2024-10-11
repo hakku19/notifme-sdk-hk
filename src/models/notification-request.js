@@ -12,6 +12,7 @@ export type EmailRequestType = RequestMetadataType & {
   cc?: string[],
   bcc?: string[],
   replyTo?: string,
+  returnPath?: string,
   text?: string,
   html?: string,
   attachments?: {

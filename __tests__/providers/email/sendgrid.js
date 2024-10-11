@@ -68,6 +68,7 @@ test('Sendgrid success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
+      returnPath: 'returnpath@example.com',
       headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],
@@ -95,7 +96,7 @@ test('Sendgrid success with all parameters.', async () => {
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"subject":"Hi John!","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
+    '{"personalizations":[{"to":[{"email":"to@example.com"}],"cc":[{"email":"cc1@example.com"},{"email":"cc2@example.com"}],"bcc":[{"email":"bcc@example.com"}]}],"from":{"email":"from@example.com"},"reply_to":{"email":"replyto@example.com"},"return_path":{"email":"returnpath@example.com"},"subject":"Hi John!","content":[{"type":"text/html","value":"<b>Hello John! How are you?</b>"}],"headers":{"My-Custom-Header":"my-value"},"custom_args":{"id":"24","userId":"36"},"attachments":[{"type":"text/plain","filename":"test.txt","content":"aGVsbG8h"}]}'
   )
   expect(result).toEqual({
     status: 'success',

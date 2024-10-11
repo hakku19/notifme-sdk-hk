@@ -67,6 +67,7 @@ test('Mandrill success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
+      returnPath: 'returnpath@example.com',
       headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],
@@ -93,7 +94,7 @@ test('Mandrill success with all parameters.', async () => {
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"key":"key","message":{"from_email":"from@example.com","to":[{"email":"to@example.com","type":"to"},{"email":"cc1@example.com","type":"cc"},{"email":"cc2@example.com","type":"cc"},{"email":"bcc@example.com","type":"bcc"}],"subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"Reply-To":"replyto@example.com","My-Custom-Header":"my-value"},"attachments":[{"type":"text/plain","name":"test.txt","content":"aGVsbG8h"}],"metadata":{"id":"24","userId":"36"}},"async":false}'
+    '{"key":"key","message":{"from_email":"from@example.com","to":[{"email":"to@example.com","type":"to"},{"email":"cc1@example.com","type":"cc"},{"email":"cc2@example.com","type":"cc"},{"email":"bcc@example.com","type":"bcc"}],"subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"Reply-To":"replyto@example.com", "Return-Path":"returnpath@example.com", "My-Custom-Header":"my-value"},"attachments":[{"type":"text/plain","name":"test.txt","content":"aGVsbG8h"}],"metadata":{"id":"24","userId":"36"}},"async":false}'
   )
   expect(result).toEqual({
     status: 'success',

@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  A Node.js library to send all kinds of transactional notifications.
+  A Node.js library to send all kinds of transactional notifications. Forked to add returnPath
 </p>
 
 <p align="center">

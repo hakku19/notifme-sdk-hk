@@ -1,11 +1,11 @@
 {
-  "name": "notifme-sdk",
-  "version": "1.16.15",
+  "name": "notifme-sdk-hk",
+  "version": "1.0.0",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/notifme/notifme-sdk.git"
+    "url": "git+https://github.com/hakku19/notifme-sdk-hk.git"
   },
   "author": "Notif.me",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "node-fetch": "2.7.0",
     "node-pushnotifications": "3.1.1",
     "nodemailer": "6.9.10",
+    "notifme-sdk-hk": "^1.0.0",
     "web-push": "3.6.7",
     "winston": "3.15.0"
   },

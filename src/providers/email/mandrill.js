@@ -12,7 +12,7 @@ export default class EmailMandrillProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
+    const { id, userId, from, replyTo, returnPath, subject, html, text, headers, to, cc, bcc, attachments } =
       request.customize ? (await request.customize(this.id, request)) : request
     const response = await fetch('https://mandrillapp.com/api/1.0/messages/send.json', {
       method: 'POST',
@@ -34,6 +34,7 @@ export default class EmailMandrillProvider {
           html,
           headers: {
             ...(replyTo ? { 'Reply-To': replyTo } : null),
+            ...(returnPath ? { 'Return-Path': returnPath } : null),
             ...headers
           },
           ...(attachments && attachments.length ? {

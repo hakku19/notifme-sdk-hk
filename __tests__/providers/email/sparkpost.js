@@ -68,6 +68,7 @@ test('Sparkpost success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
+      returnPath: 'returnpath@example.com',
       headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],
@@ -95,7 +96,7 @@ test('Sparkpost success with all parameters.', async () => {
     })
   }))
   expect(mockHttp.body).toEqual(
-    '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}'
+    '{"options":{"transactional":true},"content":{"from":"from@example.com","reply_to":"replyto@example.com","return_path":"returnpath@example.com","subject":"Hi John!","html":"<b>Hello John! How are you?</b>","headers":{"My-Custom-Header":"my-value","CC":"cc1@example.com,cc2@example.com"},"attachments":[{"type":"text/plain","name":"test.txt","data":"aGVsbG8h"}]},"recipients":[{"address":{"email":"to@example.com"}},{"address":{"email":"cc1@example.com","header_to":"to@example.com"}},{"address":{"email":"cc2@example.com","header_to":"to@example.com"}},{"address":{"email":"bcc@example.com","header_to":"to@example.com"}}],"metadata":{"id":"24","userId":"36"}}'
   )
   expect(result).toEqual({
     status: 'success',

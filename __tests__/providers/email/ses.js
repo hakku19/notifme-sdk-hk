@@ -74,6 +74,7 @@ test('SES success with all parameters.', async () => {
       subject: 'Hi John',
       html: '<b>Hello John! How are you?</b>',
       replyTo: 'replyto@example.com',
+      returnPath: 'returnpath@example.com',
       headers: { 'My-Custom-Header': 'my-value' },
       cc: ['cc1@example.com', 'cc2@example.com'],
       bcc: ['bcc@example.com'],

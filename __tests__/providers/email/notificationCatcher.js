@@ -18,15 +18,16 @@ const request = {
     subject: 'Hi John',
     html: '<b>Hello John! How are you?</b>',
     text: 'Hello John! How are you?',
-    replyTo: 'contact@example.com'
+    replyTo: 'contact@example.com',
+    returnPath: 'returnpath@example.com'
   }
 }
 
 test('email notification catcher provider should use SMTP provider.', async () => {
   const result = await sdk.send(request)
-  const { to, from, html, text, subject, replyTo } = request.email
+  const { to, from, html, text, subject, replyTo, returnPath } = request.email
   expect(mockSend).lastCalledWith({
-    to, from, html, text, subject, replyTo, headers: { 'X-to': `[email] ${to}` }
+    to, from, html, text, subject, replyTo, returnPath, headers: { 'X-to': `[email] ${to}` }
   })
   expect(result).toEqual({
     status: 'success',
@@ -43,8 +44,8 @@ test('email notification catcher provider should customize requests.', async () 
       customize: async (provider, request) => ({ ...request, subject: 'Hi John!' })
     }
   })
-  const { to, from, html, text, replyTo } = request.email
+  const { to, from, html, text, replyTo, returnPath } = request.email
   expect(mockSend).lastCalledWith({
-    to, from, html, text, subject: 'Hi John!', replyTo, headers: { 'X-to': `[email] ${to}` }
+    to, from, html, text, subject: 'Hi John!', replyTo, returnPath, headers: { 'X-to': `[email] ${to}` }
   })
 })

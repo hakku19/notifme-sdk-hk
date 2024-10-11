@@ -19,7 +19,7 @@ export default class EmailMailgunProvider {
   }
 
   async send (request: EmailRequestType): Promise<string> {
-    const { id, userId, from, replyTo, subject, html, text, headers, to, cc, bcc, attachments } =
+    const { id, userId, from, replyTo, returnPath, subject, html, text, headers, to, cc, bcc, attachments } =
       request.customize ? (await request.customize(this.id, request)) : request
     const form = new FormData()
     form.append('from', from)
@@ -28,6 +28,7 @@ export default class EmailMailgunProvider {
     if (text) form.append('text', text)
     if (html) form.append('html', html)
     if (replyTo) form.append('h:Reply-To', replyTo)
+    if (returnPath) form.append('h:Return-Path', returnPath)
     if (cc && cc.length > 0) cc.forEach((email) => form.append('cc', email))
     if (bcc && bcc.length > 0) bcc.forEach((email) => form.append('bcc', email))
     if (attachments && attachments.length > 0) {
