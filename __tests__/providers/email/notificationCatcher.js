@@ -27,7 +27,7 @@ test('email notification catcher provider should use SMTP provider.', async () =
   const result = await sdk.send(request)
   const { to, from, html, text, subject, replyTo, returnPath } = request.email
   expect(mockSend).lastCalledWith({
-    to, from, html, text, subject, replyTo, returnPath, headers: { 'X-to': `[email] ${to}` }
+    to, from, html, text, subject, replyTo, 'Return-Path': returnPath, headers: { 'X-to': `[email] ${to}` }
   })
   expect(result).toEqual({
     status: 'success',

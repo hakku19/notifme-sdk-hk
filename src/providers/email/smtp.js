@@ -13,7 +13,10 @@ export default class EmailSmtpProvider {
 
   async send (request: EmailRequestType): Promise<string> {
     const { customize, ...rest } = request.customize ? (await request.customize(this.id, request)) : request
-    const result = await this.transporter.sendMail(rest)
+    const result = await this.transporter.sendMail({
+      ...rest,
+      'Return-Path': rest.returnPath
+    })
     return result.messageId
   }
 }
