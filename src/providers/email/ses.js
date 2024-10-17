@@ -72,7 +72,7 @@ export default class EmailSesProvider {
   async getRaw ({ customize, ...request }: EmailRequestType): Promise<Buffer> {
     const email = new MailComposer(request).compile()
     email.headers = {
-      ...headers,
+      ...request.headers,
       'Return-Path': request.returnPath
     }
     email.keepBcc = true
