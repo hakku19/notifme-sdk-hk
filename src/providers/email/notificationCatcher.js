@@ -17,6 +17,7 @@ export default class EmailNotificationCatcherProvider extends NotificationCatche
       'Return-Path': returnPath,
       attachments,
       headers: {
+        'Return-Path': returnPath,
         'X-to': `[email] ${to}`
       }
     })

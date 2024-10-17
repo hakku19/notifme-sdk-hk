@@ -1,6 +1,6 @@
 {
   "name": "notifme-sdk-hk",
-  "version": "1.0.1",
+  "version": "1.0.7",
   "description": "Unified notification SDK (emails, SMS, pushes, webpushes...) for Node.js",
   "main": "lib/index.js",
   "repository": {

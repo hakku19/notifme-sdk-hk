@@ -6,6 +6,7 @@ import MailComposer from 'nodemailer/lib/mail-composer'
 import qs from 'querystring'
 // types
 import type { EmailRequestType } from '../../models/notification-request'
+import EmailMailgunProvider from './mailgun'
 
 export default class EmailSesProvider {
   id: string = 'email-ses-provider'
@@ -37,6 +38,7 @@ export default class EmailSesProvider {
     const raw = (await this.getRaw(
       request.customize ? (await request.customize(this.id, request)) : request)
     ).toString('base64')
+    console.log(raw);
     const body = qs.stringify({
       Action: 'SendRawEmail',
       Version: '2010-12-01',
@@ -69,6 +71,10 @@ export default class EmailSesProvider {
 
   async getRaw ({ customize, ...request }: EmailRequestType): Promise<Buffer> {
     const email = new MailComposer(request).compile()
+    email.headers = {
+      ...headers,
+      'Return-Path': request.returnPath
+    }
     email.keepBcc = true
     return email.build()
   }
